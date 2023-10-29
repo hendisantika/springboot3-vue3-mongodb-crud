@@ -1,5 +1,6 @@
 package com.hendisantika.backend.controller;
 
+import com.hendisantika.backend.exception.ResourceNotFoundException;
 import com.hendisantika.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,5 +27,15 @@ public class UserController {
     @GetMapping("/users")
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id")
+                                            String id) throws ResourceNotFoundException {
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException
+                        ("User not found for this id :: " + id));
+        return ResponseEntity.ok().body(user);
     }
 }
