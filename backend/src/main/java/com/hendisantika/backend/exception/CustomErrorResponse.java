@@ -1,6 +1,7 @@
 package com.hendisantika.backend.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
  * Time: 08:00
  * To change this template use File | Settings | File Templates.
  */
+@Data
 public class CustomErrorResponse {
     @JsonFormat(shape = JsonFormat.Shape.STRING,
             pattern = "yyyy-MM-dd hh:mm:ss")

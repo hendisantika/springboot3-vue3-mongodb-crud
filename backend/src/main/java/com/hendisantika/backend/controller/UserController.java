@@ -1,11 +1,15 @@
 package com.hendisantika.backend.controller;
 
+import com.hendisantika.backend.entity.User;
 import com.hendisantika.backend.exception.ResourceNotFoundException;
 import com.hendisantika.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -59,5 +63,18 @@ public class UserController {
         user.setId(id);
         final User updateUser = userRepository.save(user);
         return ResponseEntity.ok(updateUser);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public Map<String, Boolean> deleteUser(@PathVariable(value = "id")
+                                           String id) throws ResourceNotFoundException {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException
+                        ("User not found for this id :: " + id));
+
+        userRepository.delete(user);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 }
