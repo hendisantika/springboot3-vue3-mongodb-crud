@@ -39,3 +39,38 @@
     </div>
   </div>
 </template>
+
+<script>
+import UserDataService from "../service/UserDataService";
+
+export default {
+  name: "Users",
+  data() {
+    return {
+      users: [],
+      message: "",
+    };
+  },
+  methods: {
+    refreshUsers() {
+      UserDataService.retrieveAllUsers().then((res) => {
+        this.users = res.data;
+      });
+    },
+    addUser() {
+      this.$router.push(`/user/-1`);
+    },
+    updateUser(id) {
+      this.$router.push(`/user/${id}`);
+    },
+    deleteUser(id) {
+      UserDataService.deleteUser(id).then(() => {
+        this.refreshUsers();
+      });
+    },
+  },
+  created() {
+    this.refreshUsers();
+  },
+};
+</script>
