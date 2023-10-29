@@ -38,4 +38,9 @@ public class UserController {
                         ("User not found for this id :: " + id));
         return ResponseEntity.ok().body(user);
     }
+
+    @PostMapping("/users")
+    public User createUser(@RequestBody User user) {
+        return userRepository.save(user);
+    }
 }
