@@ -11,7 +11,7 @@
     "vue": "^3.3.4",
     "vue-router": "^4.0.6",
     "axios": "^1.7.3",
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^5.3.3",
     "core-js": "^3.6.5",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1"
