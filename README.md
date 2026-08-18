@@ -7,6 +7,10 @@ Spring Boot 3 + Vue JS 3 + MongoDB CRUD
 A simple full-stack CRUD application for managing users, with a Spring Boot REST API backend
 backed by MongoDB and a Vue 3 single-page application frontend.
 
+## Screenshot
+
+![Users CRUD screenshot](docs/screenshot.png)
+
 ## Tech Stack
 
 - **Backend**: Spring Boot 4.1, Spring Data MongoDB, Lombok, Java 25
